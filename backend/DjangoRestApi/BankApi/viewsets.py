@@ -9,7 +9,8 @@ from .models import Branches
 
 
 class FieldsApi(viewsets.ModelViewSet):
-    queryset = Branches.objects.all().order_by('ifsc')
+    queryset = Branches.objects.prefetch_related(
+        'bank').all().order_by('ifsc')
     serializer_class = BranchesSerialize
     filter_backends = [SearchFilter]
     search_fields = ['ifsc', 'bank__id', 'branch',
@@ -17,7 +18,8 @@ class FieldsApi(viewsets.ModelViewSet):
 
     @action(detail=False, methods=['get'], filter_backends=[SearchFilter], search_fields=['branch'])
     def autocomplete(self, request):
-        queryset = Branches.objects.all().order_by('ifsc')
+        queryset = Branches.objects.prefetch_related(
+            'bank').all().order_by('ifsc')
         queryset = self.filter_queryset(queryset)
         page = self.paginate_queryset(queryset)
         if page is not None:

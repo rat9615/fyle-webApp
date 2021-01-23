@@ -1,0 +1,29 @@
+.navbar {
+  margin: 3rem 4rem 0 4rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.navbar-component {
+  display: flex;
+  justify-content: space-between;
+}
+
+.example-full-width {
+  margin-right: 2rem;
+}
+
+.section {
+  margin: 3rem 4rem 0 4rem;
+  padding: 1rem;
+}
+
+td,
+th {
+  width: 13%;
+}
+table {
+  width: 100%;
+}

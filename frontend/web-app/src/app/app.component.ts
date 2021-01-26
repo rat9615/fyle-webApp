@@ -15,7 +15,7 @@ import {DialogboxComponent} from './dialogbox/dialogbox.component';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'web-app';
   branches!: MatTableDataSource<any[]>;
-  static changeClient: any;
+
 
   constructor(private  apiService:  ApiService, private global: Global, public dialog: MatDialog) {
    }
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogboxComponent);
+    this.dialog.open(DialogboxComponent);
   }
 
 }

@@ -15,6 +15,8 @@ import {DialogboxComponent} from './dialogbox/dialogbox.component';
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'web-app';
   branches!: MatTableDataSource<any[]>;
+  banks: Array<any> = [];
+  checkValue: Array<any> = [];
 
 
   constructor(private  apiService:  ApiService, private global: Global, public dialog: MatDialog) {
@@ -76,4 +78,22 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.dialog.open(DialogboxComponent);
   }
 
+  async toggle($event: any) {
+      if(localStorage.getItem('banks')){
+         this.banks = await JSON.parse(localStorage.getItem('banks')|| '{}');
+      } 
+        console.log($event.source.value);
+        this.banks.some(data => data.ifsc === $event.source.value.ifsc) ? this.banks.splice(this.banks.findIndex(data => data.ifsc === $event.source.value.ifsc), 1) : this.banks.push($event.source.value);
+        localStorage.setItem('banks', JSON.stringify(this.banks));
+  }
+
+  isChecked(row: any) {
+    if(localStorage.getItem('banks')){
+      this.checkValue =  JSON.parse(localStorage.getItem('banks')|| '{}');
+   } 
+    if(this.checkValue.some(data => data.ifsc === row.ifsc)) {
+      return true;
+    }
+    return false;
+  }
 }

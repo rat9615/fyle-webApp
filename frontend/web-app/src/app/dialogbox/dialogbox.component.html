@@ -1,10 +1,17 @@
 <h2 mat-dialog-title>Favorite Banks</h2>
 <mat-dialog-content class="mat-typography">
-  <p>
-    Learn one way to build applications with Angular and reuse your code and
-    abilities to build apps for any deployment target. For web, mobile web,
-    native mobile and native desktop.
-  </p>
+  <ol>
+    <ng-container *ngFor="let banks of banks()">
+      <li>
+        <h3>{{ banks.bank.name }}</h3>
+        <p>IFSC : {{ banks.ifsc }}</p>
+        <p>Address : {{ banks.address }}</p>
+        <p>Branch : {{ banks.branch }}</p>
+        <p>City : {{ banks.city }}</p>
+        <p>State : {{ banks.state }}</p>
+      </li>
+    </ng-container>
+  </ol>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Okay</button>

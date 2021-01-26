@@ -1,3 +1,4 @@
+import { Global } from './global';
 import { ApiService } from  './api.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
@@ -10,12 +11,11 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  value ="";
   title = 'web-app';
   branches!: MatTableDataSource<any[]>;
   static changeClient: any;
 
-  constructor(private  apiService:  ApiService) {
+  constructor(private  apiService:  ApiService, private global: Global) {
    }
 
   ngOnInit() {
@@ -65,7 +65,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   
   
   changeClient(data: Event){
-    this.value = `q=${data}`;
+    this.global.globalVariable = `?q=${data}`;
+    this.getBranches();
   }
 
 }

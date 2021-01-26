@@ -1,3 +1,4 @@
+import { Global } from './global';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -35,7 +36,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatPaginatorModule,
     MatCheckboxModule
   ],
-  providers: [],
+  providers: [ Global ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

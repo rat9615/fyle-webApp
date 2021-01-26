@@ -3,6 +3,8 @@ import { ApiService } from  './api.service';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogboxComponent} from './dialogbox/dialogbox.component';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   branches!: MatTableDataSource<any[]>;
   static changeClient: any;
 
-  constructor(private  apiService:  ApiService, private global: Global) {
+  constructor(private  apiService:  ApiService, private global: Global, public dialog: MatDialog) {
    }
 
   ngOnInit() {
@@ -27,6 +29,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.branches.paginator = this.paginator;      
       console.log(data);    });
     }
+
     @ViewChild(MatPaginator) paginator!: MatPaginator;
   
     ngAfterViewInit() {
@@ -67,6 +70,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   changeClient(data: Event){
     this.global.globalVariable = `?q=${data}`;
     this.getBranches();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogboxComponent);
   }
 
 }

@@ -16,9 +16,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogboxComponent } from './dialogbox/dialogbox.component';
 @NgModule({
   declarations: [
     AppComponent,
+    DialogboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   providers: [ Global ],
   bootstrap: [AppComponent]

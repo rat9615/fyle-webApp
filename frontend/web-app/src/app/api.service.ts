@@ -14,6 +14,6 @@ export class ApiService {
 
   getBranches():Observable<any[]>{    
     console.log();
-    return  this.httpClient.get<any[]>(`${this.API_URL}/branches/?limit=20`);
+    return  this.httpClient.get<any[]>(`${this.API_URL}/branches/`);
   }
 }

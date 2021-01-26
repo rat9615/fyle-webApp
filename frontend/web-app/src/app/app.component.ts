@@ -23,14 +23,14 @@ export class AppComponent implements OnInit, AfterViewInit {
   } 
   getBranches(){    
     this.apiService.getBranches().subscribe((data) => {        
-      this.branches  = new MatTableDataSource(data);  
-      // this.branches.paginator = this.paginator;      
+      this.branches  = new MatTableDataSource(data); 
+      this.branches.paginator = this.paginator;      
       console.log(data);    });
     }
     @ViewChild(MatPaginator) paginator!: MatPaginator;
   
     ngAfterViewInit() {
-      this.branches.paginator = this.paginator;
+      // this.branches.paginator = this.paginator;
     }
 
     applyFilter(event: Event) {

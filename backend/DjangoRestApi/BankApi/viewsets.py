@@ -16,7 +16,7 @@ class FieldsApi(viewsets.ModelViewSet):
     search_fields = ['ifsc', 'bank__id', 'branch',
                      'address', 'city', 'district', 'state']
 
-    @action(detail=False, methods=['get'], filter_backends=[SearchFilter], search_fields=['branch'])
+    @action(detail=False, methods=['get'], filter_backends=[SearchFilter], search_fields=['city'])
     def autocomplete(self, request):
         queryset = Branches.objects.prefetch_related(
             'bank').all().order_by('ifsc')

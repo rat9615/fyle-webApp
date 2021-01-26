@@ -6,7 +6,7 @@
 <div class="navbar">
   <mat-form-field appearance="fill">
     <mat-label>Cities</mat-label>
-    <mat-select>
+    <mat-select (selectionChange)="changeClient($event.value)">
       <mat-option *ngFor="let city of cities" [value]="city.id">
         {{ city.value }}
       </mat-option>
@@ -19,13 +19,8 @@
         type="text"
         placeholder="Search..."
         matInput
-        [matAutocomplete]="auto"
+        (keyup)="applyFilter($event)"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let option of options" [value]="option">
-          {{ option }}
-        </mat-option>
-      </mat-autocomplete>
     </mat-form-field>
     <button
       mat-mini-fab
@@ -38,54 +33,56 @@
 </div>
 <div class="section">
   <!-- [dataSource]="" -->
-  <table mat-table matSort>
+  <table mat-table matSort [dataSource]="branches">
     <ng-container matColumnDef="Favorites">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Favorites</th>
-      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox></mat-checkbox>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="IFSC">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>IFSC</th>
-      <td mat-cell *matCellDef="let row">{{ row.progress }}%</td>
+      <td mat-cell *matCellDef="let row">{{ row.ifsc }}</td>
     </ng-container>
 
     <ng-container matColumnDef="Bank Name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Bank Name</th>
-      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.bank.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="ID">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        {{ row.color }}
+      <td mat-cell *matCellDef="let row">
+        {{ row.bank.id }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Branch">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Branch</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        {{ row.color }}
+      <td mat-cell *matCellDef="let row">
+        {{ row.branch }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="Address">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        {{ row.color }}
+      <td mat-cell *matCellDef="let row">
+        {{ row.address }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="District">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>District</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        {{ row.color }}
+      <td mat-cell *matCellDef="let row">
+        {{ row.district }}
       </td>
     </ng-container>
 
     <ng-container matColumnDef="State">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
-      <td mat-cell *matCellDef="let row" [style.color]="row.color">
-        {{ row.color }}
+      <td mat-cell *matCellDef="let row">
+        {{ row.state }}
       </td>
     </ng-container>
 
